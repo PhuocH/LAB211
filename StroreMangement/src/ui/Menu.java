@@ -37,10 +37,12 @@ public class Menu {
                 p.addProductLong();
                 break;
             case 2:
+                p.updateProduct();
                 break;
             case 3:
                 break;
             case 4:
+                p.showProduct();
                 break;
             case 5:
                 break;
@@ -59,5 +61,16 @@ public class Menu {
         System.out.println("2. The products that the strore is selling");
         System.out.println("3. Products that are running out of stock (sorted in ascending order.");
         System.out.println("4. Import/export receipt of a product.");
+    }
+    
+    public void menuUpdate() {
+        System.out.println("1. Update for product name.");
+        System.out.println("2. Update for product name.");
+        System.out.println("3. Update for type.");
+        System.out.println("4. Update for quanlity.");
+        System.out.println("5. Update for price.");
+        System.out.println("6. Update for date of manufacture.");
+        System.out.println("7. Update for expiration date.");
+        System.out.println("8. Exit.");
     }
 }

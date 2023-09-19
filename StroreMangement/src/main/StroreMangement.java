@@ -1,11 +1,14 @@
 package main;
 
+import manageproduct.ManagerProduct;
 import ui.Menu;
 import util.Validation;
 
 public class StroreMangement {
 
     public static void main(String[] args) {
+        ManagerProduct mp = new ManagerProduct();
+        mp.loadFromFile("./productflong.txt");
         Menu m = new Menu();
         int choice;
         do {
@@ -21,6 +24,9 @@ public class StroreMangement {
             switch (choice) {
                 case 1:
                     m.menu(choice);
+                    break;
+                case 2:
+                    m.menuManageWarehouse(choice);
                     break;
                 case 5:
                     System.out.println("Thank you for using the product ^^.");

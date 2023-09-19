@@ -1,14 +1,12 @@
 package util;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import manageproduct.Product;
 
 public class Validation {
 
-    private static SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
     private static Scanner sc = new Scanner(System.in);
 
     /**
