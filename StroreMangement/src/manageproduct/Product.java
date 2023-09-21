@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class Product {
 
-    protected String productID;
-    protected String productName;
-    protected String type;
+    private String productID;
+    private String productName;
+    private String type;
     private Date dateOfManufacture;
     private Date expirationDate;
-    protected int quantity;
-    protected double price;
+    private int quantity;
+    private double price;
 
     public Product() {
         this.productID = "";

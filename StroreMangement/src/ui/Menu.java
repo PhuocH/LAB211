@@ -1,7 +1,9 @@
 package ui;
 
-import manageproduct.ManagerProduct;
+import java.util.ArrayList;
+import manageproduct.*;
 import util.Validation;
+import report.Report;
 
 public class Menu {
 
@@ -39,14 +41,29 @@ public class Menu {
         System.out.println("2. Create an export receipt.");
     }
 
-    public void menuReport(ManagerProduct mp) {
-        System.out.println("Report");
-        System.out.println("1. Products that have expired.");
-        System.out.println("2. The products that the strore is selling");
-        System.out.println("3. Products that are running out of stock (sorted in ascending order.");
-        System.out.println("4. Import/export receipt of a product.");
+    public void menuReport(Report r, ManagerProduct mp) {
+        int choice;
+        do {
+            System.out.println("");
+            System.out.println("             +--------------------------------Report--------------------------------+");
+            System.out.println("             |1. Products that have expired.                                        |");
+            System.out.println("             |2. The products that the strore is selling.                           |");
+            System.out.println("             |3. Products that are running out of stock (sorted in ascending order).|");
+            System.out.println("             |4. Import/export receipt of a product.                                |");
+            System.out.println("             +----------------------------------------------------------------------+");
+            choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
+            switch (choice) {
+                case 1:
+                    r.expiredProducts(mp.p);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            
+        } while (true);
+
     }
-    
+
     public void menuUpdate() {
         System.out.println("1. Update for product name.");
         System.out.println("2. Update for type.");
@@ -55,5 +72,5 @@ public class Menu {
         System.out.println("5. Update for date of manufacture.");
         System.out.println("6. Update for expiration date.");
         System.out.println("7. Exit.");
-    }   
+    }
 }

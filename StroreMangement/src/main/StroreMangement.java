@@ -1,6 +1,7 @@
 package main;
 
 import manageproduct.ManagerProduct;
+import report.Report;
 import ui.Menu;
 import util.Validation;
 
@@ -8,6 +9,7 @@ public class StroreMangement {
 
     public static void main(String[] args) {
         ManagerProduct mp = new ManagerProduct();
+        Report r = new Report();
         mp.loadFromFile("./product.txt");
         
         Menu m = new Menu();
@@ -28,6 +30,9 @@ public class StroreMangement {
                     break;
                 case 2:
                     m.menuManageWarehouse(mp);
+                    break;
+                case 3:
+                    m.menuReport(r, mp);
                     break;
                 case 5:
                     System.out.println("Thank you for using the product ^^.");

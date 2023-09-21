@@ -9,16 +9,17 @@ import util.Validation;
 
 public class ManagerProduct {
 
-    public ArrayList<Product> p;
+    public static ArrayList<Product> p;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public ManagerProduct() {
         p = new ArrayList<>();
     }
 
-      public void loadFromFile() {
-          
-      }
+    public void loadFromFile() {
+
+    }
+
     public boolean loadFromFile(String path) {
         File f = new File(path);
         try {
@@ -221,6 +222,10 @@ public class ManagerProduct {
         }
     }
 
+    public void reportProduct(Product pr) {
+        System.out.println(pr);
+    }
+
     public void deleteProduct() {
         if (p.isEmpty()) {
             System.out.println("The list is emty.");
@@ -242,7 +247,7 @@ public class ManagerProduct {
 
                 if (check.equalsIgnoreCase("Y")) {
                     p.remove(pr);
-                    System.out.println("Remove ID: " + pr.productID + " successful!");
+                    System.out.println("Remove ID: " + pr.getProductID() + " successful!");
                 }
             }
         }
