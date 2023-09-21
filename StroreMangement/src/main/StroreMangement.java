@@ -8,7 +8,8 @@ public class StroreMangement {
 
     public static void main(String[] args) {
         ManagerProduct mp = new ManagerProduct();
-        mp.loadFromFile("./productflong.txt");
+        mp.loadFromFile("./product.txt");
+        
         Menu m = new Menu();
         int choice;
         do {
@@ -23,10 +24,10 @@ public class StroreMangement {
             choice = Validation.getInt("Input your choice: ", "Please input [1..5]", 1, 5);
             switch (choice) {
                 case 1:
-                    m.menu(choice);
+                    m.menuManageProduct(mp);
                     break;
                 case 2:
-                    m.menuManageWarehouse(choice);
+                    m.menuManageWarehouse(mp);
                     break;
                 case 5:
                     System.out.println("Thank you for using the product ^^.");

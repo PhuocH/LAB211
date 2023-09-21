@@ -1,26 +1,33 @@
 package manageproduct;
 
-public abstract class Product {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Product {
+
     protected String productID;
     protected String productName;
     protected String type;
+    private Date dateOfManufacture;
+    private Date expirationDate;
     protected int quantity;
     protected double price;
 
     public Product() {
         this.productID = "";
         this.productName = "";
-        this.type = "";       
+        this.type = "";
     }
 
-    public Product(String productID, String productName, String type, int quantity, double price) {
+    public Product(String productID, String productName, String type, Date dateOfManufacture, Date expirationDate, int quantity, double price) {
         this.productID = productID;
         this.productName = productName;
         this.type = type;
+        this.dateOfManufacture = dateOfManufacture;
+        this.expirationDate = expirationDate;
         this.quantity = quantity;
         this.price = price;
     }
-
 
     public String getProductID() {
         return productID;
@@ -46,6 +53,22 @@ public abstract class Product {
         this.type = type;
     }
 
+    public Date getDateOfManufacture() {
+        return dateOfManufacture;
+    }
+
+    public void setDateOfManufacture(Date dateOfManufacture) {
+        this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -64,7 +87,10 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return String.format("|%-5s|%-20s|%-5s|%3d|%5.3f|", 
-                            productID, productName, type, quantity, price);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dateOfManufactureStr = sdf.format(dateOfManufacture);
+        String expirationDateStr = sdf.format(expirationDate);
+        return String.format("   |%-6s|%-20s| %-5s|    %-15s|    %-15s|   %-5d|%8.3f|",
+                productID, productName, type, dateOfManufactureStr, expirationDateStr, quantity, price);
     }
 }
