@@ -49,16 +49,18 @@ public class Report {
                 listStock.add(pr);
             }
         }
-        Collections.sort(listProduct, new Comparator<Product>() {
+        Comparator<Product> c = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
                 return Integer.compare(o1.getQuantity(), o2.getQuantity());
-            }
-        });
-        
+            }            
+        };
+        Collections.sort(listStock, c);
         for (Product product : listStock) {
             mn.reportProduct(product);
+            count++;
         }
+        
         System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
         System.out.println("There are " + count + " products that are out of stock.");
     }
