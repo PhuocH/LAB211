@@ -50,17 +50,24 @@ public class Menu {
             System.out.println("             |2. The products that the strore is selling.                           |");
             System.out.println("             |3. Products that are running out of stock (sorted in ascending order).|");
             System.out.println("             |4. Import/export receipt of a product.                                |");
+            System.out.println("             |5. Exit.                                                              |");
             System.out.println("             +----------------------------------------------------------------------+");
             choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
             switch (choice) {
                 case 1:
                     r.expiredProducts(mp.p);
                     break;
-                default:
-                    throw new AssertionError();
+                case 2:
+                    r.sellingProduct(mp.p);
+                    break;
+                case 3:
+                    r.areRunningOutStock(mp.p);
+                    break;
+                case 5:
+                    break;
             }
-            
-        } while (true);
+
+        } while (choice != 5);
 
     }
 
