@@ -252,4 +252,21 @@ public class ManagerProduct {
             }
         }
     }
+    
+    public boolean saveToFile(String path) {
+        if (path.isEmpty())
+            System.out.println(path + " is emty.");
+        try {
+            FileWriter fw = new FileWriter(new File(path));
+            for (Product pr : p) {
+                fw.write(pr.showScreen() + "\n");
+            }
+            fw.close();
+            System.out.println("\u001B[1mSave to file cars.txt successfull.\u001B[0m");
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error saving file " + path + " error!");
+            return false;
+        }
+    }
 }

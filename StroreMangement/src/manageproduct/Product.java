@@ -93,4 +93,12 @@ public class Product {
         return String.format("   |%-6s|%-20s| %-5s|    %-15s|    %-15s|   %-5d|%8.3f|",
                 productID, productName, type, dateOfManufactureStr, expirationDateStr, quantity, price);
     }
+    
+    public String showScreen() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dateOfManufactureStr = sdf.format(dateOfManufacture);
+        String expirationDateStr = sdf.format(expirationDate);
+        return String.format("|%-6s|%-20s| %-5s|    %-15s|    %-15s|   %-5d|%8.3f|",
+                productID, productName, type, dateOfManufactureStr, expirationDateStr, quantity, price);
+    }    
 }

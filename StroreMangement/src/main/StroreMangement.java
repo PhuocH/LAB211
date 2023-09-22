@@ -10,7 +10,7 @@ public class StroreMangement {
     public static void main(String[] args) {
         ManagerProduct mp = new ManagerProduct();
         Report r = new Report();
-        mp.loadFromFile("./product.txt");
+        mp.loadFromFile("./product.dat");
         
         Menu m = new Menu();
         int choice;
@@ -33,6 +33,9 @@ public class StroreMangement {
                     break;
                 case 3:
                     m.menuReport(r, mp);
+                    break;
+                case 4:
+                    mp.saveToFile("./product.dat");
                     break;
                 case 5:
                     System.out.println("Thank you for using the product ^^.");

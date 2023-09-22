@@ -1,6 +1,5 @@
 package ui;
 
-import java.util.ArrayList;
 import manageproduct.*;
 import util.Validation;
 import report.Report;
@@ -63,6 +62,8 @@ public class Menu {
                 case 3:
                     r.areRunningOutStock(mp.p);
                     break;
+                case 4:
+                    r.saveToFileProduct();
                 case 5:
                     break;
             }

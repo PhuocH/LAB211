@@ -53,15 +53,25 @@ public class Report {
             @Override
             public int compare(Product o1, Product o2) {
                 return Integer.compare(o1.getQuantity(), o2.getQuantity());
-            }            
+            }
         };
         Collections.sort(listStock, c);
         for (Product product : listStock) {
             mn.reportProduct(product);
             count++;
         }
-        
+
         System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
         System.out.println("There are " + count + " products that are out of stock.");
+    }
+
+    public void saveToFileProduct() {
+        String path = "./product.dat";
+        if (mn.saveToFile(path) == true) {
+            System.out.println("\u001B[1mSave to file cars.txt successfull.\u001B[0m");
+        }
+        else {
+            System.out.println("Save failed, error occurred while saving to " + path);
+        }
     }
 }
