@@ -1,6 +1,7 @@
 package main;
 
 import manageproduct.ManagerProduct;
+import managewarehouse.ManagerWareHouse;
 import report.Report;
 import ui.Menu;
 import util.Validation;
@@ -9,9 +10,10 @@ public class StroreMangement {
 
     public static void main(String[] args) {
         ManagerProduct mp = new ManagerProduct();
+        ManagerWareHouse mw = new ManagerWareHouse();
         Report r = new Report();
         mp.loadFromFile("./product.dat");
-        
+//        mw.loadFromFile("./warehouse.dat");
         Menu m = new Menu();
         int choice;
         do {
@@ -29,7 +31,7 @@ public class StroreMangement {
                     m.menuManageProduct(mp);
                     break;
                 case 2:
-                    m.menuManageWarehouse(mp);
+                    m.menuManageWarehouse(mw);
                     break;
                 case 3:
                     m.menuReport(r, mp);

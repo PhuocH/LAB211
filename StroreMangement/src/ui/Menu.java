@@ -1,43 +1,63 @@
 package ui;
 
 import manageproduct.*;
+import managewarehouse.ManagerWareHouse;
 import util.Validation;
 import report.Report;
 
 public class Menu {
 
     public void menuManageProduct(ManagerProduct p) {
-        System.out.println("");
-        System.out.println("             +-------Manage products-------+");
-        System.out.println("             |1. Add a product.            |");
-        System.out.println("             |2. Update product infomation.|");
-        System.out.println("             |3. Delete product.           |");
-        System.out.println("             |4. Show all product.         |");
-        System.out.println("             |5. Exit.                     |");
-        System.out.println("             +-----------------------------+");
-        int choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
-        switch (choice) {
-            case 1:
-                p.addProductLong();
-                break;
-            case 2:
-                p.updateProduct();
-                break;
-            case 3:
-                p.deleteProduct();
-                break;
-            case 4:
-                p.showProduct();
-                break;
-            case 5:
-                break;
-        }
+        int choice;
+        do {
+            System.out.println("");
+            System.out.println("             +-------Manage products-------+");
+            System.out.println("             |1. Add a product.            |");
+            System.out.println("             |2. Update product infomation.|");
+            System.out.println("             |3. Delete product.           |");
+            System.out.println("             |4. Show all product.         |");
+            System.out.println("             |5. Exit.                     |");
+            System.out.println("             +-----------------------------+");
+            choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
+            switch (choice) {
+                case 1:
+                    p.addProductLong();
+                    break;
+                case 2:
+                    p.updateProduct();
+                    break;
+                case 3:
+                    p.deleteProduct();
+                    break;
+                case 4:
+                    p.showProduct();
+                    break;
+                case 5:
+                    break;
+            }
+        } while (choice != 5);
     }
 
-    public void menuManageWarehouse(ManagerProduct mp) {
-        System.out.println("Manage Warehouse");
-        System.out.println("1. Create an import receipt.");
-        System.out.println("2. Create an export receipt.");
+    public void menuManageWarehouse(ManagerWareHouse mw) {
+        int choice;
+        do {
+            System.out.println("        +------Manage Warehouse------+");
+            System.out.println("        |1. Create an import receipt.|");
+            System.out.println("        |2. Create an export receipt.|");
+            System.out.println("        |3. Exit.                    |");
+            System.out.println("+----------------------------+");
+            choice = Validation.getInt("Input your choice: ", "Please enter [1..3]", 1, 5);
+            switch (choice) {
+                case 1:
+                    mw.createProduct();
+                    break;
+                case 2:
+//                    mp.exportProductFromWareHouse();
+                    break;
+                case 3:
+                    break;
+            }
+        } while (choice != 3);
     }
 
     public void menuReport(Report r, ManagerProduct mp) {
@@ -64,6 +84,7 @@ public class Menu {
                     break;
                 case 4:
                     r.saveToFileProduct();
+                    break;
                 case 5:
                     break;
             }

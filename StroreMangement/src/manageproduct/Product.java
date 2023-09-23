@@ -19,6 +19,10 @@ public class Product {
         this.type = "";
     }
 
+    public Product(String productID) {
+        this.productID = productID;
+    }
+
     public Product(String productID, String productName, String type, Date dateOfManufacture, Date expirationDate, int quantity, double price) {
         this.productID = productID;
         this.productName = productName;

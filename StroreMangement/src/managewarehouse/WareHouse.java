@@ -1,21 +1,22 @@
 package managewarehouse;
 
 import java.util.*;
-import manageproduct.Product;
+import util.Validation;
 
 public class WareHouse {
+
     private String id;
-    private Date time;
-    private ArrayList<Product> product;
+    private Date date;
+    public Map<String, Integer> wareList;
 
     public WareHouse() {
         this.id = "";
     }
 
-    public WareHouse(String id, Date time, ArrayList<Product> product) {
+    public WareHouse(String id, Date date, Map<String, Integer> wareList) {
         this.id = id;
-        this.time = time;
-        this.product = product;
+        this.date = date;
+        this.wareList = wareList;
     }
 
     public String getId() {
@@ -26,26 +27,44 @@ public class WareHouse {
         this.id = id;
     }
 
-    public Date getTime() {
-        return time;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public ArrayList<Product> getProduct() {
-        return product;
+    public Map<String, Integer> getWareList() {
+        return wareList;
     }
 
-    public void setProduct(ArrayList<Product> product) {
-        this.product = product;
+    public void setWareList(Map<String, Integer> wareList) {
+        this.wareList = wareList;
     }
+
+//    public double getTotalPrice() {
+//        return totalPrice;
+//    }
+
+//    public void setTotalPrice(double totalPrice) {
+//        this.totalPrice = totalPrice;
+//    }
+    
+//    public double totalPrice() {
+//        return getQuantity() * getUnitPrice();
+//    }
+//
+//    private double totalPrice = totalPrice();
+//
+//    public void totalPrice(double totalPrice) {
+//        this.totalPrice = totalPrice;
+//    }
 
     @Override
     public String toString() {
-        return String.format("|%-6s|%-15s|%-15s|",
-                                    id, time, product);
+        String dateStr = Validation.dF.format(date);
+        return String.format("|%-8s|%-15s|%-10s|\n",
+                id, date, wareList);
     }
-    
 }

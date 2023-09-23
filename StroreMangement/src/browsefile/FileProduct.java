@@ -6,10 +6,11 @@ import java.util.*;
 import manageproduct.Product;
 import util.Validation;
 
-public class FileProduct implements InterfaceProduct<Product>{
-    
+public class FileProduct implements IFile<Product> {
+
     @Override
-    public boolean loadFromFile(String path, ArrayList<Product> list) {
+    public ArrayList<Product> loadFromFile(String path) {
+        ArrayList prList = new ArrayList();
         File f = new File(path);
         try {
             FileReader fr = new FileReader(f);
@@ -28,18 +29,18 @@ public class FileProduct implements InterfaceProduct<Product>{
                 Date dateOfManufacture = Validation.dF.parse(productDateStr);
                 Date expirationDate = Validation.dF.parse(expirationDateStr);
 
-                list.add(new Product(id, name, type, dateOfManufacture, expirationDate, quantity, price));
+                prList.add(new Product(id, name, type, dateOfManufacture, expirationDate, quantity, price));
             }
             System.out.println("Import data successful!");
-            return true;
         } catch (IOException | NumberFormatException | ParseException e) {
             System.err.println("Load file error!");
-            return false;
+
         }
+        return prList;
     }
 
     @Override
-    public void saveToFile(String path, ArrayList<Product> list) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void saveToFile(ArrayList<Product> list, String fileName) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

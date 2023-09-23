@@ -230,7 +230,7 @@ public class Validation {
      * @param id
      * @return
      */
-    private static boolean isDuplicateProduct(ArrayList<Product> p, String id) {
+    public static boolean isDuplicateProduct(ArrayList<Product> p, String id) {
         for (Product pr : p) {
             if (pr.getProductID().equalsIgnoreCase(id)) {
                 return false;
@@ -263,4 +263,15 @@ public class Validation {
             return productID;
         }
     }
+    
+    public static int getIndexProductCode(String id, ArrayList<Product> prList) {
+        if (prList.isEmpty())
+            return -1;
+        for (int i = 0; i < prList.size(); i++) {
+            if (prList.get(i).getProductID().equalsIgnoreCase(id))
+                return i;
+        }
+        return -1;
+    }
+
 }
