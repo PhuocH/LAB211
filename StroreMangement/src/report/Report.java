@@ -2,19 +2,31 @@ package report;
 
 import java.util.*;
 import manageproduct.*;
+import managewarehouse.ManagerWareHouse;
+import managewarehouse.WareHouse;
+import util.ValidationProduct;
 
 public class Report {
 
     ManagerProduct mn = new ManagerProduct();
+    ManagerWareHouse mw = new ManagerWareHouse();
     private Date nowTime = new Date();
 
+//    private Date searchDate(Date date, ArrayList<Product> list) {
+//        date = ValidationProduct.getDate("Input date do you want to search: ", "Error");
+//        for (Product pr : list) {
+//            if (pr.getExpirationDate().compareTo(date))
+//        }
+//    }
     public void expiredProducts(ArrayList<Product> listProduct) {
         int count = 0;
         System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
         System.out.printf("   | %-5s|%-20s|%-6s|%-10s|%-19s|%-6s|%-8s|\n",
                 " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
+
+        Date date = ValidationProduct.getDate("Input date do you want to search: ", "Error");
         for (Product pr : listProduct) {
-            if (pr.getExpirationDate().compareTo(nowTime) < 0) {
+            if (pr.getExpirationDate().compareTo(date) > 0) {
                 mn.reportProduct(pr);
                 count++;
             }
@@ -65,13 +77,13 @@ public class Report {
         System.out.println("There are " + count + " products that are out of stock.");
     }
 
-    public void saveToFileProduct() {
-        String path = "./product.dat";
-        if (mn.saveToFile(path) == true) {
-            System.out.println("\u001B[1mSave to file cars.txt successfull.\u001B[0m");
+    public void reportReceipt(ArrayList<WareHouse> wh) {
+        if (wh.isEmpty()) {
+            System.out.println("The list is emty");
+            return;
         }
-        else {
-            System.out.println("Save failed, error occurred while saving to " + path);
+        for (WareHouse whr : wh) {
+            System.out.println(whr);
         }
     }
 }

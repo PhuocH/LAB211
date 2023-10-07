@@ -1,7 +1,7 @@
 package managewarehouse;
 
 import java.util.*;
-import util.Validation;
+import util.ValidationProduct;
 
 public class WareHouse {
 
@@ -63,8 +63,8 @@ public class WareHouse {
 
     @Override
     public String toString() {
-        String dateStr = Validation.dF.format(date);
+        String dateStr = ValidationProduct.dF.format(date);
         return String.format("|%-8s|%-15s|%-10s|\n",
-                id, date, wareList);
+                id, dateStr, wareList);
     }
 }

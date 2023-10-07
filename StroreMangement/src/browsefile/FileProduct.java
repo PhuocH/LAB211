@@ -4,7 +4,7 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.*;
 import manageproduct.Product;
-import util.Validation;
+import util.ValidationProduct;
 
 public class FileProduct implements IFile<Product> {
 
@@ -26,8 +26,8 @@ public class FileProduct implements IFile<Product> {
                 int quantity = Integer.parseInt(st.nextToken().trim());
                 double price = Double.parseDouble(st.nextToken().trim());
 
-                Date dateOfManufacture = Validation.dF.parse(productDateStr);
-                Date expirationDate = Validation.dF.parse(expirationDateStr);
+                Date dateOfManufacture = ValidationProduct.dF.parse(productDateStr);
+                Date expirationDate = ValidationProduct.dF.parse(expirationDateStr);
 
                 prList.add(new Product(id, name, type, dateOfManufacture, expirationDate, quantity, price));
             }

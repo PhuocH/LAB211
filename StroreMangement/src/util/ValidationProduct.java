@@ -2,30 +2,16 @@ package util;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import manageproduct.ManagerProduct;
 import manageproduct.Product;
-import managewarehouse.WareHouse;
 
-public class Validation {
+public class ValidationProduct {
 
     public static final SimpleDateFormat dF = new SimpleDateFormat("dd/MM/yyyy");
-    private static Scanner sc = new Scanner(System.in);
 
-    /**
-     * This is a function that checks an integer requiring the user to enter an
-     * integer If it is not an integer, the function will ask the user to enter
-     * again
-     *
-     * The two variables lowerBound and upBound are used to block values from
-     * entering outside the specified range
-     *
-     * The variable error will show the user message error.
-     *
-     * @param msg
-     * @param error
-     * @param lowerBound
-     * @param upBound
-     * @return
-     */
+    private static Scanner sc = new Scanner(System.in);
+    public static ArrayList<Product> listProduct = ManagerProduct.p;
+
     public static int getInt(String msg, String error, int lowerBound, int upBound) {
         if (lowerBound > upBound) {
             int t = lowerBound;
@@ -48,22 +34,6 @@ public class Validation {
         }
     }
 
-    /**
-     * This is a function that checks a real number, requiring the user to enter
-     * a real number If it is not a real number, the function will ask the user
-     * to re-enter
-     *
-     * The two variables lowerBound and upBound are used to block values from
-     * entering outside the specified range
-     *
-     * The variable error will show the user message error.
-     *
-     * @param msg
-     * @param error
-     * @param lowerBound
-     * @param upBound
-     * @return
-     */
     public static double getDouble(String msg, String error, double lowerBound, double upBound) {
         if (lowerBound > upBound) {
             double t = lowerBound;
@@ -86,16 +56,6 @@ public class Validation {
         }
     }
 
-    /**
-     * The function is used to request input of a string and check if the string
-     * meets the pattern condition If not, the function will request input again
-     * and report an error.
-     *
-     * @param msg
-     * @param error
-     * @param format
-     * @return
-     */
     public static String getFormat(String msg, String error, String format) {
         String s;
         boolean match;
@@ -115,16 +75,6 @@ public class Validation {
         }
     }
 
-    /**
-     * This is a function that checks a string of characters If the user leaves
-     * it blank, the request field will re-enter
-     *
-     * And the variable error will show the user message error.
-     *
-     * @param msg
-     * @param error
-     * @return
-     */
     public static String getString(String msg, String error) {
         String s;
         while (true) {
@@ -141,15 +91,6 @@ public class Validation {
         }
     }
 
-    /**
-     * The function processes date input and checks to see if the date is
-     * reasonable If it is reasonable, it returns the date value Otherwise, it
-     * will report an error and force the user to re-enter.
-     *
-     * @param msg
-     * @param error
-     * @return
-     */
     public static Date getDate(String msg, String error) {
         while (true) {
             try {
@@ -176,13 +117,6 @@ public class Validation {
         }
     }
 
-    /**
-     * The function checks the date for day, month, year and converts them from
-     * date to number and checks if the date is valid.
-     *
-     * @param date
-     * @return
-     */
     private static boolean isValidDate(int day, int month, int year) {
         if (month < 1 || month > 12) {
             return false;
@@ -191,18 +125,6 @@ public class Validation {
         return !(day < 1 || day > checkMonth(month, year));
     }
 
-    /**
-     * Function to check the month, the function uses an array of numbers so
-     * that when passing the month in, the month will correspond to the numbers
-     * in the array, and the leap year will return 29Function to check the
-     * month, the function uses an array of numbers so that when passing the
-     * month in, the month will correspond to the numbers in the array, and the
-     * leap year will return 29
-     *
-     * @param month
-     * @param year
-     * @return
-     */
     private static int checkMonth(int month, int year) {
         int[] dM = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -212,43 +134,19 @@ public class Validation {
         return dM[month];
     }
 
-    /**
-     * The function will check if the year is a leap year.
-     *
-     * @param year
-     * @return
-     */
     private static boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 
-    /**
-     * The function is used to check if there is the same ProductID If it is the
-     * same, it returns false If it is correct, it returns true.
-     *
-     * @param p
-     * @param id
-     * @return
-     */
-    public static boolean isDuplicateProduct(ArrayList<Product> p, String id) {
+    public static Product isDuplicateProduct(String id, ArrayList<Product> p) {
         for (Product pr : p) {
             if (pr.getProductID().equalsIgnoreCase(id)) {
-                return false;
+                return pr;
             }
         }
-        return true;
+        return null;
     }
 
-    /**
-     * This function prompts the user to enter a product ID and checks for
-     * duplicates within the given ArrayList of products.
-     *
-     * @param inputMsg
-     * @param error
-     * @param p
-     * @param format
-     * @return
-     */
     public static String checkDuplicateID(String inputMsg, String error, String format, ArrayList<Product> p) {
         while (true) {
             String productID = getFormat(inputMsg, error, format);
@@ -256,22 +154,26 @@ public class Validation {
             if (!productID.matches(format)) {
                 continue;
             }
-            if (isDuplicateProduct(p, productID) == false) {
+            if (isDuplicateProduct(productID, p) != null) {
                 System.out.println("Duplicated productID. Please input another one!");
                 continue;
             }
             return productID;
         }
     }
-    
+
     public static int getIndexProductCode(String id, ArrayList<Product> prList) {
-        if (prList.isEmpty())
+        if (prList.isEmpty()) {
             return -1;
+        }
         for (int i = 0; i < prList.size(); i++) {
-            if (prList.get(i).getProductID().equalsIgnoreCase(id))
+            if (prList.get(i).getProductID().equalsIgnoreCase(id)) {
                 return i;
+            }
         }
         return -1;
     }
+
+    
 
 }

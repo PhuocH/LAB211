@@ -1,23 +1,21 @@
 package manageproduct;
 
+import browsefile.FileProduct;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import ui.Menu;
-import util.Validation;
+import util.ValidationProduct;
 
 public class ManagerProduct {
 
     public static ArrayList<Product> p;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+    FileProduct fP = new FileProduct();
+    
     public ManagerProduct() {
         p = new ArrayList<>();
-    }
-
-    public ArrayList<Product> getProductList() {
-        return p;
     }
 
     public boolean loadFromFile(String path) {
@@ -36,8 +34,8 @@ public class ManagerProduct {
                 int quantity = Integer.parseInt(st.nextToken().trim());
                 double price = Double.parseDouble(st.nextToken().trim());
 
-                Date dateOfManufacture = Validation.dF.parse(productDateStr);
-                Date expirationDate = Validation.dF.parse(expirationDateStr);
+                Date dateOfManufacture = ValidationProduct.dF.parse(productDateStr);
+                Date expirationDate = ValidationProduct.dF.parse(expirationDateStr);
 
                 p.add(new Product(id, name, type, dateOfManufacture, expirationDate, quantity, price));
             }
@@ -48,22 +46,22 @@ public class ManagerProduct {
             return false;
         }
     }
-
+    
     public void addProductLong() {
         String check;
         do {
-            String productID = Validation.checkDuplicateID("Input ID (L/SXXXX): ", "Please enter the correct sytax"
+            String productID = ValidationProduct.checkDuplicateID("Input ID (L/SXXXX): ", "Please enter the correct sytax"
                     + " (L/SXXXX). X is a digit", "^(L|l|S|s)\\d{4}$", p);
-            String productName = Validation.getString("Input the product name: ", "This field is required");
-            String type = Validation.getString("Input the product type: ", "This field is required");
-            int quantity = Validation.getInt("Input the product quanlity: ", "Enter the appropriate value", 0, Integer.MAX_VALUE);
-            double price = Validation.getDouble("Input price: ", "Enter the appropriate value", 0, Double.MAX_VALUE);
-            Date dateOfManufacture = Validation.getDate("Input the manufacturing date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
-            Date expirationDate = Validation.getDate("Input the expiration date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
+            String productName = ValidationProduct.getString("Input the product name: ", "This field is required");
+            String type = ValidationProduct.getString("Input the product type: ", "This field is required");
+            int quantity = ValidationProduct.getInt("Input the product quanlity: ", "Enter the appropriate value", 0, Integer.MAX_VALUE);
+            double price = ValidationProduct.getDouble("Input price: ", "Enter the appropriate value", 0, Double.MAX_VALUE);
+            Date dateOfManufacture = ValidationProduct.getDate("Input the manufacturing date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
+            Date expirationDate = ValidationProduct.getDate("Input the expiration date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
             p.add(new Product(productID, productName, type, dateOfManufacture, expirationDate, quantity, price));
             System.out.println("Data import successful!");
 
-            check = Validation.getFormat("Do you want to continue creating new product? (Y/N): ", "Only (Y/N)", "(Y|y|N|n)");
+            check = ValidationProduct.getFormat("Do you want to continue creating new product? (Y/N): ", "Only (Y/N)", "(Y|y|N|n)");
         } while (!check.equalsIgnoreCase("N"));
     }
 
@@ -85,7 +83,7 @@ public class ManagerProduct {
             System.out.println("The list is emty.");
         } else {
             showProduct();
-            String searchID = Validation.getFormat("Input ID do you want to update (L/SXXXX): ", "Please enter the correct sytax"
+            String searchID = ValidationProduct.getFormat("Input ID do you want to update (L/SXXXX): ", "Please enter the correct sytax"
                     + " (L/SXXXX). X is a digit", "^(L|l)\\d{4}$").toUpperCase();
             Product pr = searchProduct(searchID);
             if (pr == null) {
@@ -101,7 +99,7 @@ public class ManagerProduct {
         int choice;
         do {
             m.menuUpdate();
-            choice = Validation.getInt("Input the data you want to update: ", "Please enter [1..8]", 1, 8);
+            choice = ValidationProduct.getInt("Input the data you want to update: ", "Please enter [1..8]", 1, 8);
             switch (choice) {
                 case 1:
                     System.out.println("Before product update product name: ");
@@ -110,7 +108,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    String afterPN = Validation.getString("Input name you want to update: ", "This field is required!");
+                    String afterPN = ValidationProduct.getString("Input name you want to update: ", "This field is required!");
                     pr.setProductName(afterPN);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -126,7 +124,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    String afterType = Validation.getString("Input type you want to update: ", "This field is required!");
+                    String afterType = ValidationProduct.getString("Input type you want to update: ", "This field is required!");
                     pr.setType(afterType);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -142,7 +140,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    int afterQuantity = Validation.getInt("Input quantity you want to update: ", "Enter the appropriate value", 0, Integer.MAX_VALUE);
+                    int afterQuantity = ValidationProduct.getInt("Input quantity you want to update: ", "Enter the appropriate value", 0, Integer.MAX_VALUE);
                     pr.setQuantity(afterQuantity);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -158,7 +156,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    double afterPrice = Validation.getDouble("Input price you want to update: ", "Enter the appropriate value", 0, Double.MAX_VALUE);
+                    double afterPrice = ValidationProduct.getDouble("Input price you want to update: ", "Enter the appropriate value", 0, Double.MAX_VALUE);
                     pr.setPrice(afterPrice);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -174,7 +172,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    Date afterdateOM = Validation.getDate("Input the manufacturing date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
+                    Date afterdateOM = ValidationProduct.getDate("Input the manufacturing date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
                     pr.setDateOfManufacture(afterdateOM);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -190,7 +188,7 @@ public class ManagerProduct {
                             " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                     System.out.println(pr);
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                    Date afterdateEx = Validation.getDate("Input the expiration date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
+                    Date afterdateEx = ValidationProduct.getDate("Input the expiration date (DD/MM/YYYY): ", "Invalid date format. Please re-enter.");
                     pr.setExpirationDate(afterdateEx);
                     System.out.println("Update successful!");
                     System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
@@ -231,7 +229,7 @@ public class ManagerProduct {
             System.out.println("The list is emty.");
         } else {
             showProduct();
-            String searchID = Validation.getFormat("Input ID do you want to delete (L/SXXXX): ", "Please enter the correct sytax"
+            String searchID = ValidationProduct.getFormat("Input ID do you want to delete (L/SXXXX): ", "Please enter the correct sytax"
                     + " (L/SXXXX). X is a digit", "^(L|l)\\d{4}$").toUpperCase();
             Product pr = searchProduct(searchID);
             if (pr == null) {
@@ -243,7 +241,7 @@ public class ManagerProduct {
                         " ID", "        Name", " Type", "Date of manufacture", "  Expiration Date", "Quantity", "  Price");
                 System.out.println(pr);
                 System.out.println("   +------+--------------------+------+-------------------+-------------------+--------+--------+");
-                String check = Validation.getFormat("Are you sure you want to remove? (Y/N): ", "Only (Y/N)", "Y|y|N|n");
+                String check = ValidationProduct.getFormat("Are you sure you want to remove? (Y/N): ", "Only (Y/N)", "Y|y|N|n");
 
                 if (check.equalsIgnoreCase("Y")) {
                     p.remove(pr);
@@ -263,7 +261,7 @@ public class ManagerProduct {
                 fw.write(pr.showScreen() + "\n");
             }
             fw.close();
-            System.out.println("\u001B[1mSave to file cars.txt successfull.\u001B[0m");
+            System.out.println("\u001B[1mSave to file " + path + " successfull.\u001B[0m");
             return true;
         } catch (Exception e) {
             System.out.println("Error saving file " + path + " error!");

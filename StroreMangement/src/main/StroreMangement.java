@@ -4,7 +4,7 @@ import manageproduct.ManagerProduct;
 import managewarehouse.ManagerWareHouse;
 import report.Report;
 import ui.Menu;
-import util.Validation;
+import util.ValidationProduct;
 
 public class StroreMangement {
 
@@ -12,8 +12,8 @@ public class StroreMangement {
         ManagerProduct mp = new ManagerProduct();
         ManagerWareHouse mw = new ManagerWareHouse();
         Report r = new Report();
-        mp.loadFromFile("./product.dat");
-//        mw.loadFromFile("./warehouse.dat");
+        mp.loadFromFile("./Product.dat");
+        mw.loadFromFile("./warehouse.dat");
         Menu m = new Menu();
         int choice;
         do {
@@ -25,7 +25,7 @@ public class StroreMangement {
             System.out.println("       |4. Store data to file                              |");
             System.out.println("       |5. Close the application                           |");
             System.out.println("       +---------------------------------------------------+");
-            choice = Validation.getInt("Input your choice: ", "Please input [1..5]", 1, 5);
+            choice = ValidationProduct.getInt("Input your choice: ", "Please input [1..5]", 1, 5);
             switch (choice) {
                 case 1:
                     m.menuManageProduct(mp);
@@ -34,17 +34,17 @@ public class StroreMangement {
                     m.menuManageWarehouse(mw);
                     break;
                 case 3:
-                    m.menuReport(r, mp);
+                    m.menuReport(r, mp, mw);
                     break;
                 case 4:
                     mp.saveToFile("./product.dat");
+                    mw.saveToFile();
                     break;
                 case 5:
                     System.out.println("Thank you for using the product ^^.");
                     break;
             }
         } while (choice != 5);
-
     }
 
 }

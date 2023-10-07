@@ -2,7 +2,7 @@ package ui;
 
 import manageproduct.*;
 import managewarehouse.ManagerWareHouse;
-import util.Validation;
+import util.ValidationProduct;
 import report.Report;
 
 public class Menu {
@@ -18,7 +18,7 @@ public class Menu {
             System.out.println("             |4. Show all product.         |");
             System.out.println("             |5. Exit.                     |");
             System.out.println("             +-----------------------------+");
-            choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
+            choice = ValidationProduct.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
             switch (choice) {
                 case 1:
                     p.addProductLong();
@@ -45,14 +45,14 @@ public class Menu {
             System.out.println("        |1. Create an import receipt.|");
             System.out.println("        |2. Create an export receipt.|");
             System.out.println("        |3. Exit.                    |");
-            System.out.println("+----------------------------+");
-            choice = Validation.getInt("Input your choice: ", "Please enter [1..3]", 1, 5);
+            System.out.println("        +----------------------------+");
+            choice = ValidationProduct.getInt("Input your choice: ", "Please enter [1..3]", 1, 5);
             switch (choice) {
                 case 1:
                     mw.createProduct();
                     break;
                 case 2:
-//                    mp.exportProductFromWareHouse();
+                    mw.expirtation();
                     break;
                 case 3:
                     break;
@@ -60,7 +60,7 @@ public class Menu {
         } while (choice != 3);
     }
 
-    public void menuReport(Report r, ManagerProduct mp) {
+    public void menuReport(Report r, ManagerProduct mp, ManagerWareHouse mwh) {
         int choice;
         do {
             System.out.println("");
@@ -71,7 +71,7 @@ public class Menu {
             System.out.println("             |4. Import/export receipt of a product.                                |");
             System.out.println("             |5. Exit.                                                              |");
             System.out.println("             +----------------------------------------------------------------------+");
-            choice = Validation.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
+            choice = ValidationProduct.getInt("Input your choice: ", "Please enter [1..5]", 1, 5);
             switch (choice) {
                 case 1:
                     r.expiredProducts(mp.p);
@@ -83,7 +83,7 @@ public class Menu {
                     r.areRunningOutStock(mp.p);
                     break;
                 case 4:
-                    r.saveToFileProduct();
+                    r.reportReceipt(mwh.whList);
                     break;
                 case 5:
                     break;
