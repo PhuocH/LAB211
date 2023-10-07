@@ -1,5 +1,6 @@
 package managementfunction;
 
+<<<<<<< HEAD
 import dataflight.Flight;
 import java.util.*;
 import util.*;
@@ -16,5 +17,8 @@ public class ManagerFlight {
         Date arrivalTime = Validation.getDateFromString("Input arrvial time: ", "Invalid date. Please input again!");
         
     }
+=======
+public class ManagerFlight {
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
     
 }

@@ -62,7 +62,11 @@ public class Validation {
                 System.out.print(msg);
                 s = sc.nextLine();
                 match = s.matches(format);
+<<<<<<< HEAD
                 if (s.isEmpty()|| match == false) {
+=======
+                if (s.isBlank() || match == false) {
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
                     throw new Exception();
                 }
                 return s;
@@ -78,7 +82,11 @@ public class Validation {
         while (true) {
             System.out.print(msg);
             s = sc.nextLine();
+<<<<<<< HEAD
             if (s.isEmpty()) {
+=======
+            if (s.isBlank()) {
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
                 System.out.println(error);
             }
             return s;

@@ -12,8 +12,13 @@ public class Crew extends People{
         this.crewMap = crewMap;
     }
 
+<<<<<<< HEAD
     public Crew(String id, String name, Date birthday, String role, Map<String, List<Flight>> crewMap) {
         super(id, name, birthday);
+=======
+    public Crew(String id, String name, Date birthday, String country, String role, Map<String, List<Flight>> crewMap) {
+        super(id, name, birthday, country);
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
         this.role = role;
         this.crewMap = crewMap;
     }

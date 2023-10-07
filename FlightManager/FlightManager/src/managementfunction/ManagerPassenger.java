@@ -1,5 +1,6 @@
 package managementfunction;
 
+<<<<<<< HEAD
 import java.util.*;
 import util.*;
 import dataflight.Flight;
@@ -13,10 +14,21 @@ public class ManagerPassenger {
     
     public ManagerPassenger(Flight fList) {
         this.fList = fList;
+=======
+import java.util.ArrayList;
+import util.*;
+import datapeople.*;
+
+public class ManagerPassenger {
+    private ArrayList<Passenger> psList;
+    
+    public ManagerPassenger() {
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
         psList = new ArrayList<>();
     }
     
     public void addPassenger() {
+<<<<<<< HEAD
         Map<String, List<Flight>> mapLists = new HashMap<>();                
         
         String id = ValidPassenger.checkDuplicateID("Input id: ", "You must enter a numeric ID. X is a digit number"
@@ -36,5 +48,9 @@ public class ManagerPassenger {
         m.menuFlight();
         String searchDepartCity = Validation.getString("Please enter the city you want to depart from: ", "This field is required!");
         
+=======
+        String id = ValidPassenger.checkDuplicateID("Input id (XXXXX): ", "You must enter a numeric ID. X is a digit number"
+                , "(0-9)\\d{5}", psList);
+>>>>>>> 76195c2914f78230aa234ca9a2a1b9b42d018f98
     }
 }
