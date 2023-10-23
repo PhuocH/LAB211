@@ -13,7 +13,7 @@ public class main {
         int choice;
         do {
             m.mainMenu();
-            choice = Validation.getInt("Input your choice functions: ", "The menu only has 8 functions ", 1, 8);
+            choice = Validation.getInt("Input your choice functions: ", "The menu only has 8 functions ", 1, 9);
             switch (choice) {
                 case 1:
                     vm.addVehicle();
@@ -33,8 +33,12 @@ public class main {
                 case 6:
                     vm.showVehicle();
                     break;
+                case 8:
+                    m.menuSort();
+                    vm.sort();
+                    break;
             }
-        } while (choice != 8);
+        } while (choice != 9);
     }
 
 }

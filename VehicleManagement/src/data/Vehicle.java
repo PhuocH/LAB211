@@ -80,6 +80,7 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "id=" + id + ", name=" + name + ", color=" + color + ", brand=" + brand + ", type=" + type + ", productYear=" + productYear + ", price=" + price + '}';
+        return String.format("|%-6s|%-25s|%-15s|%-10s|%-15s|%-12d|%8.6f|", 
+                            id, name, color, brand, type, productYear, price);
     }
 }

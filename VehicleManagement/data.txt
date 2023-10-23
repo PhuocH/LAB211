@@ -2,7 +2,7 @@
 |V21402|Air Blade 160 (2023)|Blue Dark Gray|Honda|Motobike|2023|57.890000|
 |V94512|Super Cub C125|Black|Honda|Digital Car|2023|86.292000|
 |V81275|SH Mode 125|Dark Grey|Honda|Motobike|2023|63.808363|
-|V01925|CBR1000RR-R Fireblade SP|Red Blue White|Honda|Cone Vehicles|2023|1.050500000|
+|V01925|CBR1000RR-R Fireblade SP|Red Blue White|Honda|Cone Vehicles|2023|99.050500|
 |V64365|Grande Blue Core Hybrid|Gray White|Yamaha|Motobike|2023|49.091000|
 |V12523|Janus|Dark Blue|Yamaha|Motobike|2023|32.400000|
 |V98233|Neo's|Black|Yamaha|Tram|2023|49.091000|
